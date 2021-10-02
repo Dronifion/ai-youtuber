@@ -1,0 +1,50 @@
+
+# my.kv file code here
+<MainWidget>:
+
+    # used to change the label text
+    # as in rootwidget class
+    txtQuestion:my_question
+    txtAnswer:my_answer
+
+    # Creating the background of the App
+    canvas:
+        Color:
+            rgb: .45, .28, .5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    cols: 2 
+    rows: 3
+    Label:
+        text:'Question: '
+        markup: True
+        size_hint_x: None
+        width: 200
+        size_hint_y: None
+        height: 100
+    TextInput:
+        id: my_question
+        multiline: True
+        size_hint_y: None
+        height: 100
+    Label:
+        text: 'Answer: '
+        markup: True
+        size_hint_x: None
+        width: 200
+    TextInput:
+        id: my_answer
+        multiline: True
+        # Creating thepg bar of specific value
+    Label:
+        size_hint_x: None
+        width: 200
+        size_hint_y: None
+        height: 100
+    Button:
+        text: 'Submit'
+        size: 100, 100
+        size_hint_y: None
+        height: 100
+        on_press: root.onPress_submitButton()

@@ -1,10 +1,12 @@
 import wikipedia as wiki
 import kivy
 from kivy.app import App
+#from kivy.lang import Builder # it is to import Builder
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from kivy.uix.progressbar import ProgressBar 
 
 class mainPage(GridLayout):
     def __init__(self, **kwargs):
@@ -29,9 +31,29 @@ class mainPage(GridLayout):
         print(a_wiki)
         instance.parent.ids.inputAnswerId.text = a_wiki
 
+# building kv file as string
+#kvfile = Builder.load_string("""
+
+#""")
+
+# This class stores the info of .kv file
+# when it is called goes to my.kv file
+class MainWidget(GridLayout):
+    def onPress_submitButton(self):
+        q = self.txtQuestion.text
+        if len(q) > 0:
+            a_wiki = wiki.summary(str(q))
+            print(a_wiki)
+            self.txtAnswer.text = a_wiki
+
+# define the App class
+# and just pass rest write on kvfile
+# not necessary to pass
+# can also define function in it
 class EpicApp(App):
     def build(self):
-        return mainPage()
+        # return a MainWidget() as a root widget
+        return MainWidget()
 
 if __name__ == "__main__":
     #while True:
