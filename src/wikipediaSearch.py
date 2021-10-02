@@ -43,9 +43,18 @@ class MainWidget(GridLayout):
     def onPress_submitButton(self):
         q = self.txtQuestion.text
         if len(q) > 0:
-            ans_wiki = wiki.summary(str(q))
-            #print(a_wiki)
-            self.txtAnswer.text = ans_wiki
+            try:
+                ans_wiki = wiki.summary(str(q))
+                self.txtAnswer.text = ans_wiki
+            except Exception:
+                wikiMulti = None
+                for new_query in wiki.search(str(q)):
+                    try:
+                        wikiMulti += wiki.summary(new_query)
+                    except Exception:
+                        pass
+                self.txtAnswer.text = wikiMulti        
+            
 
     def onPress_saveFileButton(self):
         ans = self.txtAnswer.text
