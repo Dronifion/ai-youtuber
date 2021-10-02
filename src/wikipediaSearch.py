@@ -39,12 +39,22 @@ class mainPage(GridLayout):
 # This class stores the info of .kv file
 # when it is called goes to my.kv file
 class MainWidget(GridLayout):
+    
     def onPress_submitButton(self):
         q = self.txtQuestion.text
         if len(q) > 0:
-            a_wiki = wiki.summary(str(q))
-            print(a_wiki)
-            self.txtAnswer.text = a_wiki
+            ans_wiki = wiki.summary(str(q))
+            #print(a_wiki)
+            self.txtAnswer.text = ans_wiki
+
+    def onPress_saveFileButton(self):
+        ans = self.txtAnswer.text
+        self.lblFileStatus.text = ''
+        if len(ans) > 0:
+            with open('wikiResult.txt', 'w') as fh:
+                fh.write(ans)  
+                self.lblFileStatus.text = 'Saved'      
+
 
 # define the App class
 # and just pass rest write on kvfile

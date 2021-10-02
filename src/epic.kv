@@ -6,6 +6,7 @@
     # as in rootwidget class
     txtQuestion:my_question
     txtAnswer:my_answer
+    lblFileStatus: my_save_file_status
 
     # Creating the background of the App
     canvas:
@@ -15,7 +16,7 @@
             pos: self.pos
             size: self.size
     cols: 2 
-    rows: 3
+    rows: 4
     Label:
         text:'Question: '
         markup: True
@@ -48,3 +49,16 @@
         size_hint_y: None
         height: 100
         on_press: root.onPress_submitButton()
+    Label:
+        id: my_save_file_status
+        text: ''
+        size_hint_x: None
+        width: 200
+        size_hint_y: None
+        height: 100
+    Button:
+        text: 'Save File'
+        size: 100, 100
+        size_hint_y: None
+        height: 100
+        on_press: root.onPress_saveFileButton()    
