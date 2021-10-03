@@ -53,7 +53,7 @@ class MainWidget(GridLayout):
                         wikiMulti += wiki.summary(new_query)
                     except Exception:
                         pass
-                self.txtAnswer.text = wikiMulti        
+                self.txtAnswer.text = str(wikiMulti)        
             
 
     def onPress_saveFileButton(self):
